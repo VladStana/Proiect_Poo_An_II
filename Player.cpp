@@ -10,13 +10,14 @@ void Player::initVariables()
 void Player::initTextures()
 {
     this->playerTexture.loadFromFile("C:/Users/Vlad/Desktop/Proiect POO - Jump King/Images/Player/default.png");
-    this->shape.setSize(sf::Vector2f(50.f, 65.f));
-    this->shape.setPosition(20,395);
+    shape.setTexture(&playerTexture);
+    this->shape.setSize(sf::Vector2f(93.f, 103.f));
+    this->shape.setPosition(20,360);
 }
 
 void Player::initSprites()
 {
-    this->playerSprite.setTexture(this->playerTexture);
+   // this->playerSprite.setTexture(this->playerTexture);
 }
 
 Player::Player(float x, float y)
