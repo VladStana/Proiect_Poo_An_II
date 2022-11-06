@@ -3,16 +3,26 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
+//initializam variabilele playerului
 void Player::initVariables()
 {
     this -> movementSpeed= 4.f;
 }
+
+//generam playerul si ii aplicam texturi
 void Player::initTextures()
 {
     this->playerTexture.loadFromFile("C:/Users/Vlad/Desktop/Proiect POO - Jump King/Images/Player/default.png");
     shape.setTexture(&playerTexture);
     this->shape.setSize(sf::Vector2f(93.f, 103.f));
     this->shape.setPosition(20,360);
+}
+
+void Player::Gravity ()
+{
+    if (!this->isOnGround)
+        shape.move(0, 3);
+
 }
 
 void Player::initSprites()
@@ -54,6 +64,7 @@ void Player::update()
 {
     //window bounds collision //to be done
     this->updateInput();
+    this->Gravity();
 }
 
 void Player::render(sf::RenderTarget & target)
@@ -61,5 +72,6 @@ void Player::render(sf::RenderTarget & target)
     target.draw(this->shape);
     target.draw(playerSprite);
 }
+
 
 
