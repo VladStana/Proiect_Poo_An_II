@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Player.h"
+#include "Line.h"
 //Private Functions
 
 void Game::initializeVariables()
@@ -16,6 +17,7 @@ void Game::initializeWindow()
     this-> window ->setFramerateLimit(60);
 }
 
+
 void Game::initializeWorld()
 {
     if(!this->levelBackgroundTexture.loadFromFile("C:/Users/Vlad/Desktop/Proiect POO - Jump King/Images/1.png"))
@@ -23,14 +25,26 @@ void Game::initializeWorld()
     this->levelBackground.setTexture(this->levelBackgroundTexture);
 }
 
+
+void Game::initializeCollision() {
+    sf::VertexArray Line1(sf::Lines,2);
+
+    Line1[0].position=sf::Vector2f (20.f, 460.f); //20, 460, 320, 460)
+    Line1[1].position=sf::Vector2f (320.f, 460.f);
+    Line1[0].color = sf::Color::Red;
+    Line1[1].color = sf::Color::Red;
+
+
+}
 //Constructors & Destructors
 
 Game::Game()
 {
     this -> initializeVariables();
+    this -> initializeCollision();
     this -> initializeWindow();
     this -> initializeWorld();
-    //this -> initializeEnemies();
+
 }
 
 Game::~Game()
@@ -110,6 +124,7 @@ void Game::pollEvents()
 void Game::update()
 {
     this -> pollEvents();
+    player.Gravity();
     player.updateInput();
 }
 
@@ -122,9 +137,7 @@ void Game::render()
 {
     this -> window -> clear();
     this -> renderWorld();
-
     player.render(*this->window);
-
     this -> window -> display();
 }
 

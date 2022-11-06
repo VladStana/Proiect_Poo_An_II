@@ -32,14 +32,12 @@ private:
     sf::Sprite levelBackground;
 
     //Game objects
-    std::vector<sf::RectangleShape> enemies;
-    sf::RectangleShape enemy;
 
     //Private functions
     void initializeVariables();
     void initializeWorld();
     void initializeWindow();
-
+    void initializeCollision();
 
 public:
     //Constructors & Destructors
@@ -54,6 +52,7 @@ public:
     void update();
     void render();
     void renderWorld();
+
 
 };
 
